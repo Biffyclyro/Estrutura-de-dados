@@ -13,16 +13,20 @@ int cont(List *l);
 List *enter(List *l, int i);
 int retorna(List *l);
 List *limpa(List *l);
+List *copia(List *l, List *c);
+void insere(List *l, int x, int y);
 
 main(){
 	int x, y=0;
-	List *l;
+	List *l, *c;
+	c=NULL;
 	l=NULL;
 	l=enter(l, 123);
 	l=enter(l, 44);
 	l=enter(l, 566);
 	l=enter(l, 90);
 	l=enter(l, 57);
+	c=copia(l, c);
 	while(y==0){
 		//system("cls");
 		printf("Escolha opcao\n");
@@ -38,7 +42,7 @@ main(){
 				break;
 			}
 			case 2:{
-				printf("%d\n",retorna(l));
+				printf("%d\n",retorna(c));
 				system("pause");
 				break;
 			}
@@ -78,7 +82,7 @@ main(){
 	
  }
  
- int cont(List *l){
+int cont(List *l){
 	List *p;
 	int cont=0;
 	if(l==NULL)return cont;
@@ -119,8 +123,17 @@ List *limpa(List *l){
 	for(p=l; p != NULL; ) {
 		ant=p;
 		p=p->prox;
-		printf("%d, ", ant->inf);
+		//printf("%d, ", ant->inf);
 		free(ant);
 	}
 	return NULL;		
+}
+
+List *copia(List *l, List *c){
+	List *p;	
+	for(p=l; p->prox != NULL; p=p->prox){		
+		c=enter(c, p->inf);	
+	}
+	return c;
+	
 }
