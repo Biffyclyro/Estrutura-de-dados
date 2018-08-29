@@ -12,7 +12,7 @@ typedef struct list List;
 int cont(List *l);
 List *enter(List *l, int i);
 int retorna(List *l);
-void limpa(List *l);
+List *limpa(List *l);
 
 main(){
 	int x, y=0;
@@ -24,7 +24,7 @@ main(){
 	l=enter(l, 90);
 	l=enter(l, 57);
 	while(y==0){
-		system("cls");
+		//system("cls");
 		printf("Escolha opcao\n");
 		printf("1.Contar.\n");
 		printf("2. Retorna.\n");
@@ -43,8 +43,8 @@ main(){
 				break;
 			}
 			case 3:{
-				free(l);
-				//limpa(l);
+				//free(l);
+				l = limpa(l);
 				break;
 			}
 			case 0:{
@@ -114,17 +114,13 @@ int retorna(List *l){
 	
 }
 
-void limpa(List *l){
-	List *p, *pp;
-	for(p=l; p->prox != NULL; p=pp){
-		pp=p->prox;
-		fflush(stdin);
-		free(p);
-		
-		return;
+List *limpa(List *l){
+	List *p, *ant;
+	for(p=l; p != NULL; ) {
+		ant=p;
+		p=p->prox;
+		printf("%d, ", ant->inf);
+		free(ant);
 	}
-	
-	
-		
+	return NULL;		
 }
-
