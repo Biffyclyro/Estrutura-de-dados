@@ -69,17 +69,14 @@ main(){
 		}
 	}
 	
-	
-
-	
 }
 
  List *enter(List *l, int i){
 	List *novo, *p;
 	if(l==NULL){
 		novo=(List*) malloc(sizeof(List));
-		novo->ant=NULL;
-		novo->prox=NULL;
+		novo->ant=l;
+		novo->prox=l;
 		novo->inf=i;
 		return novo;
 	}
