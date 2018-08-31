@@ -14,7 +14,8 @@ List *enter(List *l, int i);
 int retorna(List *l);
 List *limpa(List *l);
 List *copia(List *l, List *c);
-void insere(List *l, int x, int y);
+void insere(List *l);
+
 
 main(){
 	int x, y=0;
@@ -26,13 +27,15 @@ main(){
 	l=enter(l, 566);
 	l=enter(l, 90);
 	l=enter(l, 57);
-	c=copia(l, c);
+	
 	while(y==0){
 		//system("cls");
 		printf("Escolha opcao\n");
 		printf("1.Contar.\n");
 		printf("2. Retorna.\n");
 		printf("3.Limpa.\n");
+		printf("4. Copiar\n");
+		printf("5. Inserir\n");
 		scanf("%d", &x);
 	
 		switch(x){
@@ -42,13 +45,21 @@ main(){
 				break;
 			}
 			case 2:{
-				printf("%d\n",retorna(c));
+				printf("%d\n",retorna(l));
 				system("pause");
 				break;
 			}
 			case 3:{
 				//free(l);
 				l = limpa(l);
+				break;
+			}
+			case 4:{
+				c=copia(l, c);
+				break;
+			}
+			case 5:{
+				insere(l);
 				break;
 			}
 			case 0:{
@@ -87,8 +98,8 @@ int cont(List *l){
 	int cont=0;
 	if(l==NULL)return cont;
 	if(l->prox==NULL)return 1;
-	for(p=l; p->prox !=NULL; p=p->prox)cont++;
-	return ++cont;
+	for(p=l; p !=NULL; p=p->prox)cont++;
+	return cont;
 }
 
 int retorna(List *l){
@@ -102,7 +113,7 @@ int retorna(List *l){
 		return;
 	}
 	
-	for(p=l; p->prox != NULL; p=p->prox){
+	for(p=l; p!= NULL; p=p->prox){
 		cont++;
 		if(cont==i){			
 			return p->inf;	
@@ -110,7 +121,7 @@ int retorna(List *l){
 				
 	}
 	
-	if(i>cont){
+	if(cont < i){
 		printf("Posicao n existe!!\n");
 		return;
 		
@@ -131,9 +142,30 @@ List *limpa(List *l){
 
 List *copia(List *l, List *c){
 	List *p;	
-	for(p=l; p->prox != NULL; p=p->prox){		
+	for(p=l; p != NULL; p=p->prox){		
 		c=enter(c, p->inf);	
 	}
 	return c;
 	
 }
+
+void insere(List *l){
+	List *novo, *p;
+	int cont=0, x, y;
+	printf("Entre com um valor e a posicao\n");
+	scanf("%d %d", &x, &y);
+	for(p=l; p!= NULL; p=p->prox){
+		cont++;
+		if(cont+1==y){
+			novo=(List*) malloc(sizeof(List));
+			novo->prox = p->prox;
+			p->prox=novo;
+		//	p->ant->prox=novo;
+		//	novo->ant = p->ant;
+		//	p->ant=novo;			
+			novo->inf = x;
+		}
+		
+	}
+}
+
