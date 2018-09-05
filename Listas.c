@@ -15,6 +15,7 @@ int retorna(List *l);
 List *limpa(List *l);
 List *copia(List *l, List *c);
 void insere(List *l);
+void ordena(List *l, List *c);
 
 
 main(){
@@ -36,6 +37,7 @@ main(){
 		printf("3.Limpa.\n");
 		printf("4. Copiar\n");
 		printf("5. Inserir\n");
+		printf("6.Ordenar\n");
 		scanf("%d", &x);
 	
 		switch(x){
@@ -60,6 +62,10 @@ main(){
 			}
 			case 5:{
 				insere(l);
+				break;
+			}
+			case 6:{
+				ordena(l,c);
 				break;
 			}
 			case 0:{
@@ -166,3 +172,18 @@ void insere(List *l){
 	}
 }
 
+void ordena(List *l, List *c){
+	List *p, *n;
+	c=copia(l,c);
+	for(p=l; p->prox!=NULL; p=p->prox){
+		for(n=c; n->prox!= NULL; n=n->prox){
+			if(p==l && p->inf< n->inf){
+				p->inf=n->inf;
+			}
+			if(p->prox->inf>p->inf && p->prox->inf<n->inf)p->prox->inf=n->inf;
+		}
+		
+	}
+	
+	
+}
