@@ -1,8 +1,10 @@
+
 #include<stdio.h>
 #include<stdlib.h>
+#include<limits.h>
 
 struct list{
-	int inf;
+	int inf, mark;
 	struct list *ant, *prox;
 	
 };
@@ -15,7 +17,7 @@ int retorna(List *l);
 List *limpa(List *l);
 List *copia(List *l, List *c);
 void insere(List *l);
-void ordena(List *l, List *c);
+List *ordena(List *l);
 
 
 main(){
@@ -65,7 +67,7 @@ main(){
 				break;
 			}
 			case 6:{
-				ordena(l,c);
+				l=ordena(l);
 				break;
 			}
 			case 0:{
@@ -172,18 +174,29 @@ void insere(List *l){
 	}
 }
 
-void ordena(List *l, List *c){
+List *ordena(List *l){
 	List *p, *n;
-	c=copia(l,c);
-	for(p=l; p->prox!=NULL; p=p->prox){
-		for(n=c; n->prox!= NULL; n=n->prox){
-			if(p==l && p->inf< n->inf){
-				p->inf=n->inf;
+	int ctr=INT_MAX, menor=0, i;
+	n=NULL;
+	for(i=0; i< cont(l); i++){
+		for(p=l; p!= NULL; p=p->prox){
+			
+			if(p->inf < ctr && p->inf > menor){
+				ctr=p->inf;
+				
 			}
-			if(p->prox->inf>p->inf && p->prox->inf<n->inf)p->prox->inf=n->inf;
+		//	printf("%d\n", ctr );
+		
+			
+		//	if(p->prox->inf>p->inf && p->prox->inf<n->inf)p->inf=n->inf;
 		}
+		menor=ctr;
+	//	printf("%d\n", ctr );
+		ctr=INT_MAX;
+		n=enter(n,menor);
 		
 	}
+	return n;
 	
 	
 }
