@@ -13,26 +13,26 @@ void print(Tree *r);
 
 
 void imprime(Tree *r){
-	if(r!=NULL){
+/*	if(r!=NULL){
 		printf("%d\n", r->inf);
 		imprime(r->left);
 		imprime(r->right);		
 		
-	}
+	} */
 	
-/*	if(r!=NULL){
+	if(r!=NULL){
 		
-		imprime(r->esq);
-		printf("%d\n", r->v);
-		imprime(r->dir);		
+		imprime(r->left);
+		printf("%d\n", r->inf);
+		imprime(r->right);		
 		
 	}
-	
+/*	
 		if(r!=NULL){
 		
-		imprime(r->esq);		
-		imprime(r->dir);
-		printf("%d\n", r->v);		
+		imprime(r->left);		
+		imprime(r->right);
+		printf("%d\n", r->inf);		
 		
 	}*/
 	
@@ -58,27 +58,20 @@ Tree *enter(Tree *r, int x){
 		novo->left=r;
 		novo->right=r;
 		return novo;
-	}
-	p=r;
-	if(x<r->inf){
-		aux=p;
-		p=aux->left;
 	}else{
-		aux=p;
-		p=aux->right;
-	}
-	if(p==NULL){
-		novo=(Tree*) malloc(sizeof(Tree));
-		novo->inf=x;
-		novo->left=NULL;
-		novo->right=NULL;		
-		p=novo;
-		aux->		
-		return r;
+		if(x<r->inf){					
+			p=r->left;			
+			p=enter(p, x);
+			r->left=p;			
+		}
 		
-	}else{
-		enter(p,x);
+		if(x>r->inf){			
+			p=r->right;			
+			p=enter(p, x);
+			r->right=p;		
+		}
 	}
+	return r;
 	
 	
 	
