@@ -10,7 +10,7 @@ typedef struct tree Tree;
 
 Tree *enter(Tree *r, int x);
 void print(Tree *r);
-Tree *remover(Tree *r);
+Tree *remover(Tree *r, int x);
 int busca(Tree *r, int x);
 
 
@@ -51,10 +51,11 @@ main(){
 	r=enter(r, 28);
 	r=enter(r, 70);
 	r=enter(r, 49);
-//	imprime(r);
-	printf("%d\n", busca(r, 30));
+	imprime(r);
+	remover(r, 20);
+	//printf("%d\n", busca(r, 30));
 //	remover(r);
-//	imprime(r);
+	imprime(r);
 	
 	
 }
@@ -97,27 +98,28 @@ void print(Tree *r){
 	}	
 }
 
-Tree *remover(Tree *r){
-	Tree *p;
-	if(r->right == NULL && r->left == NULL){
-		free(r);
-		return NULL;
-	}else{
-		if(r->right!=NULL){
+Tree *remover(Tree *r, int x){
+	Tree *p, *k;
+	p=r;
+	while(p != NULL){
+		if(p->inf == x){
 			
-			p=r->right;
-			r->right=remover(p);		
-			
+			break;
 		}
-		if(r->left!=NULL){
-			
-			p=r->left;
-			r->left=remover(p);		
-			
+		if(x < p->inf) p=p->left;
+		else p=p->right;
+	}
+	k=p->right;
+	while(k!= NULL){
+		k=k->left;
+		if(k->left->left==NULL){
+			k->left->left=p->left;
+			k->right->right=p->right;
+			k->left=NULL;
 		}
-			
 	}
 	return r;
+	
 	
 	
 }
