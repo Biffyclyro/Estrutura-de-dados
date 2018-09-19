@@ -10,6 +10,8 @@ typedef struct tree Tree;
 
 Tree *enter(Tree *r, int x);
 void print(Tree *r);
+Tree *remover(Tree *r);
+int busca(Tree *r, int x);
 
 
 void imprime(Tree *r){
@@ -42,11 +44,17 @@ void imprime(Tree *r){
 main(){
 	Tree *r;
 	r=NULL;
-	r=enter(r,12);
-	r=enter(r,6);
-	r=enter(r,4);
+	r=enter(r,20);
 	r=enter(r,17);
-	imprime(r);
+	r=enter(r,5);
+	r=enter(r,30);
+	r=enter(r, 28);
+	r=enter(r, 70);
+	r=enter(r, 49);
+//	imprime(r);
+	printf("%d\n", busca(r, 30));
+//	remover(r);
+//	imprime(r);
 	
 	
 }
@@ -86,8 +94,64 @@ void print(Tree *r){
 		print(p);
 	}else{
 		p=r;
-	}
-	
+	}	
+}
 
+Tree *remover(Tree *r){
+	Tree *p;
+	if(r->right == NULL && r->left == NULL){
+		free(r);
+		return NULL;
+	}else{
+		if(r->right!=NULL){
+			
+			p=r->right;
+			r->right=remover(p);		
+			
+		}
+		if(r->left!=NULL){
+			
+			p=r->left;
+			r->left=remover(p);		
+			
+		}
+			
+	}
+	return r;
+	
+	
+}
+
+
+int busca(Tree *r, int x){
+	Tree *p;
+	p=r;
+	while(p != NULL){
+		if(p->inf == x){
+			return 1;
+		}
+		if(x < p->inf) p=p->left;
+		else p=p->right;
+	}
+//	return 0;
+	
+	
+	
+	
+/*	if(r==NULL){
+		return 0;		
+	}else{
+		printf("%d\n", r->inf);
+		if(r->inf==x){
+			return 1;
+		}else if(x<r->inf){
+			busca(r->left, x);			
+		}else if(x>r->inf){
+			busca(r->right, x);
+		}		
+		
+	} */
+	
+	
 	
 }
