@@ -52,7 +52,7 @@ main(){
 }
 
 Tree *enter(Tree *r, int x){
-	Tree *novo, *p, *aux;
+	Tree *novo, *p;
 	if(r==NULL){
 		novo=(Tree*) malloc(sizeof(Tree));
 		novo->inf=x;
