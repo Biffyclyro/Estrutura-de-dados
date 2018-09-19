@@ -45,6 +45,7 @@ main(){
 	r=enter(r,12);
 	r=enter(r,6);
 	r=enter(r,4);
+	r=enter(r,17);
 	imprime(r);
 	
 	
@@ -71,38 +72,9 @@ Tree *enter(Tree *r, int x){
 			r->right=p;		
 		}
 	}
-	return r;
+	return r;	
 	
-	
-	
-/*	if(x < r->inf && r->left==NULL ){
-		//for(p=r; p->left!=NULL; p=p->left);
-		novo=(Tree*) malloc(sizeof(Tree));
-		r->left=novo;
-		novo->inf=x;
-		novo->left=NULL;
-		novo->right=NULL;
-		return r;
-	}
-	 if(x < r->inf && r->left !=NULL){
-		p=r->left;
-		enter(p, x);
-		
-	}
-	 
-	if(x > r->inf && r->right==NULL){
-		novo=(Tree*) malloc(sizeof(Tree));
-		r->right=novo;
-		novo->inf=x;
-		novo->left=NULL;
-		novo->right=NULL;
-		return r;
-	}else if(x > r->inf && r->right !=NULL){
-		p=r->right;
-		enter(p, x);
-		
-	} */
-	
+
 }
 
 void print(Tree *r){
