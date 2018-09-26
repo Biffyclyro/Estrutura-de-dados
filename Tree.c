@@ -52,9 +52,10 @@ main(){
 	r=enter(r, 70);
 	r=enter(r, 49);
 	imprime(r);
-	remover(r, 20);
+	r=remover(r, 30);
+	printf("\n\n");
 	//printf("%d\n", busca(r, 30));
-//	remover(r);
+	//remover(r);
 	imprime(r);
 	
 	
@@ -100,25 +101,26 @@ void print(Tree *r){
 
 Tree *remover(Tree *r, int x){
 	Tree *p, *k;
-	p=r;
-	while(p != NULL){
-		if(p->inf == x){
-			
-			break;
-		}
+	p=r;	
+	while(p != NULL && p->inf != x) {			
 		if(x < p->inf) p=p->left;
-		else p=p->right;
+		if(x > p->inf) p=p->right;
+		
 	}
-	k=p->right;
-	while(k!= NULL){
-		k=k->left;
-		if(k->left->left==NULL){
-			k->left->left=p->left;
-			k->right->right=p->right;
-			k->left=NULL;
-		}
-	}
-	return r;
+	printf("%d ", p->inf);
+	
+	if(p->right!=NULL)k=p->right;
+	while(k->left != NULL)k=k->left;
+	k->left=p->left;
+	k->right=p->right;	
+	free(p);
+	p->left = NULL;
+	p->right = NULL;
+	p=NULL;
+			
+	
+	
+	return r; 
 	
 	
 	
@@ -157,3 +159,8 @@ int busca(Tree *r, int x){
 	
 	
 }
+
+
+
+
+
