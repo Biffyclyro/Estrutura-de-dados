@@ -100,17 +100,37 @@ void print(Tree *r){
 }
 
 Tree *remover(Tree *r, int x){
-	Tree *p, *k;
-	p=r;	
+	//p é todo é qualquer ponteiro e k é outro ponteiro no caso do p ta ocupado, é nois!!! ;P
+	
+	
+	Tree *p, *k, *l;
+	p=r;
+	l=r;
+	Tree *pai;	
 	while(p != NULL && p->inf != x) {			
+		pai = p;
 		if(x < p->inf) p=p->left;
-		if(x > p->inf) p=p->right;
+		if(x > p->inf) p=p->right;		
+	}
+	printf("\n\nPai: %d", pai->inf);	
+	printf("Filho: %d\n\n", p->inf);
+	
+	
+	while(l != NULL && l->inf != x ) {			
+		if(l->left != p) l=l->left;
+		if(l->right !=p) l=l->right;
+		printf("sahsuashua \n");
 		
 	}
+	
+	if(l->left == p)l->left=k;
+	if(l->right == p)l->right=k;
+	
 	printf("%d ", p->inf);
 	
 	if(p->right!=NULL)k=p->right;
 	while(k->left != NULL)k=k->left;
+	
 	k->left=p->left;
 	k->right=p->right;	
 	free(p);
