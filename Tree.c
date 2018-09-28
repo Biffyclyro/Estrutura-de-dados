@@ -116,15 +116,15 @@ Tree *remover(Tree *r, int x){
 	printf("Filho: %d\n\n", p->inf);
 	
 	
-	while(l != NULL && l->inf != x ) {			
+/*	while(l != NULL && l->inf != x ) {			
 		if(l->left != p) l=l->left;
 		if(l->right !=p) l=l->right;
 		printf("sahsuashua \n");
 		
-	}
+	} */
 	
-	if(l->left == p)l->left=k;
-	if(l->right == p)l->right=k;
+	if(pai->left == p)pai->left=k;
+	if(pai->right == p)pai->right=k;
 	
 	printf("%d ", p->inf);
 	
@@ -134,9 +134,8 @@ Tree *remover(Tree *r, int x){
 	k->left=p->left;
 	k->right=p->right;	
 	free(p);
-	p->left = NULL;
-	p->right = NULL;
-	p=NULL;
+	
+	//p=NULL;
 			
 	
 	
